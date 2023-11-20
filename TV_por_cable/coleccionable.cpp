@@ -19,7 +19,7 @@ void coleccionable::actualizador(char tipo, int velocidad, char minijuego)
         this->vely = 0;
         switch (minijuego) {
         case 'c':
-            setPixmap(QPixmap(":/imagenes/manzana.png"));
+
             break;
         default:
             break;
@@ -28,10 +28,10 @@ void coleccionable::actualizador(char tipo, int velocidad, char minijuego)
         break;
     case 'd':{
         this->velx = 0;
-        this->vely = -velocidad;
+        this->vely = velocidad;
         switch (minijuego) {
         case 'c':
-            setPixmap(QPixmap(":/imagenes/manzana.png"));
+            setPixmap(QPixmap(":/imagenes/manzana.png").scaled(30, 30));
             break;
         default:
             break;
@@ -43,12 +43,46 @@ void coleccionable::actualizador(char tipo, int velocidad, char minijuego)
     }
 }
 
-unsigned short coleccionable::get_velx()
+short coleccionable::get_velx()
 {
     return velx;
 }
 
-unsigned short coleccionable::get_vely()
+short coleccionable::get_vely()
 {
     return vely;
+}
+
+bool coleccionable::collider(char minigame)
+{
+    bool contacto = false;
+    QList<QGraphicsItem *> list = collidingItems();
+    for (short i = 0; i < list.size(); i++){
+        if (typeid(*(list[i])) == typeid(player)){
+            switch (minigame) {
+            case 'n':{}
+                break;
+            case 'c':{
+                setPos(rand()%241+320, rand()%1000-1000);
+            }
+            break;
+            default:
+                break;
+            }
+        }
+        if (typeid(*(list[i])) == typeid(obstaculo)){
+            switch (minigame) {
+            case 'n':{}
+            break;
+            case 'c':{
+                contacto = true;
+                setPos(rand()%241+320, rand()%1000-1000);
+            }
+            break;
+            default:
+                break;
+            }
+        }
+    }
+    return contacto;
 }

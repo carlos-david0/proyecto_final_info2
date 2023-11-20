@@ -2,5 +2,5 @@
 
 imagenes::imagenes()
 {
-    setPixmap(QPixmap(":/imagenes/menu.png").scaled(321, 210));
+        setPixmap(QPixmap(":/imagenes/menu.png").scaled(321, 210));
 }

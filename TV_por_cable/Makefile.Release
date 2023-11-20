@@ -120,8 +120,19 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_resources.cpp
 release/qrc_resources.cpp: resources.qrc \
 		../../../../Qt/6.6.0/mingw_64/bin/rcc.exe \
+		imagenes/bullets.png \
+		imagenes/Robot1.png \
+		imagenes/manzana.png \
+		imagenes/barrera.png \
+		imagenes/pngwing.com.png \
+		imagenes/robot2.png \
+		imagenes/bird1.png \
+		imagenes/bird3.png \
+		imagenes/cactus.png \
 		imagenes/canasta.png \
-		imagenes/menu.png
+		imagenes/menu.png \
+		imagenes/robot3.png \
+		imagenes/bird2.png
 	C:\Qt\6.6.0\mingw_64\bin\rcc.exe -name resources --no-zstd resources.qrc -o release\qrc_resources.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
@@ -310,6 +321,8 @@ release/moc_mainwindow.cpp: mainwindow.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qgraphicsitem.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpainterpath.h \
 		player.h \
+		obstaculo.h \
+		coleccionable.h \
 		release/moc_predefs.h \
 		../../../../Qt/6.6.0/mingw_64/bin/moc.exe
 	C:\Qt\6.6.0\mingw_64\bin\moc.exe $(DEFINES) --include "C:/Users/Carlos David/Documents/TV_por_cable/release/moc_predefs.h" -IC:/Qt/6.6.0/mingw_64/mkspecs/win32-g++ -I"C:/Users/Carlos David/Documents/TV_por_cable" -IC:/Qt/6.6.0/mingw_64/include -IC:/Qt/6.6.0/mingw_64/include/QtWidgets -IC:/Qt/6.6.0/mingw_64/include/QtGui -IC:/Qt/6.6.0/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include mainwindow.h -o release\moc_mainwindow.cpp
@@ -473,7 +486,9 @@ release/coleccionable.o: coleccionable.cpp coleccionable.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qrgb.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qrgba64.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qimage.h \
-		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpixelformat.h
+		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpixelformat.h \
+		player.h \
+		obstaculo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\coleccionable.o coleccionable.cpp
 
 release/imagenes.o: imagenes.cpp imagenes.h \
@@ -792,6 +807,8 @@ release/main.o: main.cpp mainwindow.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qgraphicsitem.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpainterpath.h \
 		player.h \
+		obstaculo.h \
+		coleccionable.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication.h \
@@ -993,6 +1010,8 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qgraphicsitem.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpainterpath.h \
 		player.h \
+		obstaculo.h \
+		coleccionable.h \
 		ui_mainwindow.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtCore/QVariant \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
@@ -1024,6 +1043,12 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qscrollarea.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qframe.h \
+		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/QLCDNumber \
+		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qlcdnumber.h \
+		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/QLabel \
+		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qlabel.h \
+		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpicture.h \
+		../../../../Qt/6.6.0/mingw_64/include/QtGui/qtextdocument.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/QPushButton \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qpushbutton.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qabstractbutton.h \
@@ -1166,7 +1191,8 @@ release/obstaculo.o: obstaculo.cpp obstaculo.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qrgb.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qrgba64.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qimage.h \
-		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpixelformat.h
+		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpixelformat.h \
+		player.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\obstaculo.o obstaculo.cpp
 
 release/player.o: player.cpp player.h \
@@ -1305,7 +1331,8 @@ release/player.o: player.cpp player.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qrgb.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qrgba64.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qimage.h \
-		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpixelformat.h
+		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpixelformat.h \
+		obstaculo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\player.o player.cpp
 
 release/qrc_resources.o: release/qrc_resources.cpp 

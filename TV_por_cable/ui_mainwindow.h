@@ -12,6 +12,8 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QLCDNumber>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -24,6 +26,10 @@ public:
     QWidget *centralwidget;
     QGraphicsView *graphicsView;
     QPushButton *jugar;
+    QLCDNumber *puntuacion;
+    QLabel *gameover;
+    QLCDNumber *puntuaciongo;
+    QLabel *instruccion;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -42,6 +48,31 @@ public:
         font.setFamilies({QString::fromUtf8("Noto Serif Cond")});
         jugar->setFont(font);
         jugar->setCursor(QCursor(Qt::PointingHandCursor));
+        puntuacion = new QLCDNumber(centralwidget);
+        puntuacion->setObjectName("puntuacion");
+        puntuacion->setGeometry(QRect(610, 20, 64, 23));
+        gameover = new QLabel(centralwidget);
+        gameover->setObjectName("gameover");
+        gameover->setGeometry(QRect(270, 150, 151, 61));
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("Source Code Pro")});
+        font1.setPointSize(20);
+        font1.setBold(true);
+        gameover->setFont(font1);
+        gameover->setAlignment(Qt::AlignCenter);
+        puntuaciongo = new QLCDNumber(centralwidget);
+        puntuaciongo->setObjectName("puntuaciongo");
+        puntuaciongo->setGeometry(QRect(300, 210, 91, 23));
+        instruccion = new QLabel(centralwidget);
+        instruccion->setObjectName("instruccion");
+        instruccion->setGeometry(QRect(250, 200, 191, 16));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Rubik")});
+        font2.setPointSize(12);
+        font2.setBold(true);
+        font2.setItalic(true);
+        instruccion->setFont(font2);
+        instruccion->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -53,6 +84,8 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         jugar->setText(QCoreApplication::translate("MainWindow", "Jugar", nullptr));
+        gameover->setText(QCoreApplication::translate("MainWindow", "Game over", nullptr));
+        instruccion->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

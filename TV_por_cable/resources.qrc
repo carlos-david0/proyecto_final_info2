@@ -3,5 +3,15 @@
         <file>imagenes/menu.png</file>
         <file>imagenes/canasta.png</file>
         <file>imagenes/manzana.png</file>
+        <file>imagenes/barrera.png</file>
+        <file>imagenes/bullets.png</file>
+        <file>imagenes/bird2.png</file>
+        <file>imagenes/bird1.png</file>
+        <file>imagenes/bird3.png</file>
+        <file>imagenes/pngwing.com.png</file>
+        <file>imagenes/Robot1.png</file>
+        <file>imagenes/robot2.png</file>
+        <file>imagenes/robot3.png</file>
+        <file>imagenes/cactus.png</file>
     </qresource>
 </RCC>
