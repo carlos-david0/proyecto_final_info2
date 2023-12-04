@@ -19,6 +19,24 @@ void player::setimage(char minijuego)
         setPixmap(QPixmap(":/imagenes/canasta.png").scaled(100, 100));
     }
         break;
+    case 'p':{
+        setPixmap(QPixmap(":/imagenes/aro.png").scaled(100, 100));
+    }
+    break;
+    case 'm':{
+        switch (direccion) {
+        case 'a':
+            setPixmap(QPixmap(":/imagenes/pinguinoi.png").scaled(60, 60));
+            break;
+        case 'd':
+            setPixmap(QPixmap(":/imagenes/pinguinod.png").scaled(60, 60));
+            break;
+        default:
+            setPixmap(QPixmap(":/imagenes/pinguinod.png").scaled(60, 60));
+            break;
+        }
+    }
+    break;
     case 'b':{
         switch (direccion) {
         case 'w':
@@ -108,6 +126,32 @@ void player::actualizador(char minijuego, unsigned short puntuacion)
         }
     }
         break;
+    case 'm':{
+        velocidady = 0;
+        switch (direccion) {
+        case 'a':
+            if (x()-puntuacion > 0){
+                velocidadx = -(puntuacion+2);
+            }else{
+                velocidadx = 0;
+            }
+            break;
+        case 'd':
+            if (x()+puntuacion < 562){
+                velocidadx = puntuacion+2;
+            }else{
+                velocidadx = 0;
+            }
+            break;
+        case 'n':
+            velocidadx = 0;
+            velocidady = 0;
+            break;
+        default:
+            break;
+        }
+    }
+    break;
     case 'b':{
         velocidadx = 0;
         switch (direccion) {
@@ -132,6 +176,44 @@ void player::actualizador(char minijuego, unsigned short puntuacion)
             velocidady = 0;
         }
             break;
+        case 'a':{
+            velocidadx = 0;
+            velocidady = 0;
+        }
+        break;
+        case 'n':
+            velocidadx = 0;
+            velocidady = 0;
+            break;
+        default:
+            break;
+        }
+    }
+    break;
+    case 'p':{
+        velocidadx = 0;
+        switch (direccion) {
+        case 'w':{
+            if (y()-puntuacion > -20){
+                velocidady = -(puntuacion)-1;
+            }else{
+                velocidady = 0;
+            }
+        }
+        break;
+        case 's':{
+            if (y()+puntuacion < 230){
+                velocidady = puntuacion+1;
+            }else{
+                velocidady = 0;
+            }
+        }
+        break;
+        case 'd':{
+            velocidadx = 0;
+            velocidady = 0;
+        }
+        break;
         case 'a':{
             velocidadx = 0;
             velocidady = 0;

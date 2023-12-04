@@ -13,5 +13,17 @@
         <file>imagenes/robot2.png</file>
         <file>imagenes/robot3.png</file>
         <file>imagenes/cactus.png</file>
+        <file>imagenes/esquiadord.png</file>
+        <file>imagenes/esquiadori.png</file>
+        <file>imagenes/pinguinod.png</file>
+        <file>imagenes/pinguinoi.png</file>
+        <file>imagenes/aro.png</file>
+        <file>imagenes/pelotas.png</file>
+        <file>imagenes/0.png</file>
+        <file>imagenes/full.png</file>
+        <file>imagenes/half.png</file>
+        <file>imagenes/Low.png</file>
+        <file>imagenes/nube.png</file>
+        <file>imagenes/cancha.png</file>
     </qresource>
 </RCC>

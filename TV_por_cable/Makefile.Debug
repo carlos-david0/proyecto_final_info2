@@ -120,19 +120,31 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_resources.cpp
 debug/qrc_resources.cpp: resources.qrc \
 		../../../../Qt/6.6.0/mingw_64/bin/rcc.exe \
+		imagenes/cancha.png \
 		imagenes/bullets.png \
+		imagenes/pelotas.png \
 		imagenes/Robot1.png \
+		imagenes/aro.png \
 		imagenes/manzana.png \
+		imagenes/esquiadori.png \
 		imagenes/barrera.png \
+		imagenes/half.png \
+		imagenes/nube.png \
 		imagenes/pngwing.com.png \
 		imagenes/robot2.png \
+		imagenes/pinguinoi.png \
+		imagenes/esquiadord.png \
 		imagenes/bird1.png \
 		imagenes/bird3.png \
+		imagenes/pinguinod.png \
 		imagenes/cactus.png \
 		imagenes/canasta.png \
 		imagenes/menu.png \
 		imagenes/robot3.png \
-		imagenes/bird2.png
+		imagenes/full.png \
+		imagenes/bird2.png \
+		imagenes/Low.png \
+		imagenes/0.png
 	C:\Qt\6.6.0\mingw_64\bin\rcc.exe -name resources --no-zstd resources.qrc -o debug\qrc_resources.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
@@ -321,8 +333,8 @@ debug/moc_mainwindow.cpp: mainwindow.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qgraphicsitem.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpainterpath.h \
 		player.h \
-		obstaculo.h \
 		coleccionable.h \
+		obstaculo.h \
 		debug/moc_predefs.h \
 		../../../../Qt/6.6.0/mingw_64/bin/moc.exe
 	C:\Qt\6.6.0\mingw_64\bin\moc.exe $(DEFINES) --include "C:/Users/Carlos David/Documents/TV_por_cable/debug/moc_predefs.h" -IC:/Qt/6.6.0/mingw_64/mkspecs/win32-g++ -I"C:/Users/Carlos David/Documents/TV_por_cable" -IC:/Qt/6.6.0/mingw_64/include -IC:/Qt/6.6.0/mingw_64/include/QtWidgets -IC:/Qt/6.6.0/mingw_64/include/QtGui -IC:/Qt/6.6.0/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include mainwindow.h -o debug\moc_mainwindow.cpp
@@ -807,8 +819,8 @@ debug/main.o: main.cpp mainwindow.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qgraphicsitem.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpainterpath.h \
 		player.h \
-		obstaculo.h \
 		coleccionable.h \
+		obstaculo.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qapplication.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtCore/qcoreapplication.h \
@@ -1010,8 +1022,8 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/qgraphicsitem.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpainterpath.h \
 		player.h \
-		obstaculo.h \
 		coleccionable.h \
+		obstaculo.h \
 		ui_mainwindow.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtCore/QVariant \
 		../../../../Qt/6.6.0/mingw_64/include/QtWidgets/QApplication \
@@ -1331,8 +1343,7 @@ debug/player.o: player.cpp player.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qrgb.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qrgba64.h \
 		../../../../Qt/6.6.0/mingw_64/include/QtGui/qimage.h \
-		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpixelformat.h \
-		obstaculo.h
+		../../../../Qt/6.6.0/mingw_64/include/QtGui/qpixelformat.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\player.o player.cpp
 
 debug/qrc_resources.o: debug/qrc_resources.cpp 

@@ -11,7 +11,7 @@ void obstaculo::actualizador(char tipo, int velocidad, char minijuego)
      *  'i' va hacia la izquierda
      *  'd' va hacia la derecha
      *  'a' va hacia arriba
-     *  'd' va hacia abajo*/
+     *  'b' va hacia abajo*/
     switch (tipo) {
     case 'e':{
         this->velx = 0;
@@ -23,8 +23,14 @@ void obstaculo::actualizador(char tipo, int velocidad, char minijuego)
         case 'b':
             setPixmap(QPixmap(":/imagenes/barrera.png").scaled(30, 500));
             break;
+        case 'p':
+            setPixmap(QPixmap(":/imagenes/barrera.png").scaled(30, 500));
+            break;
         case 'd':
             setPixmap(QPixmap(":/imagenes/barrera.png").scaled(30, 500));
+            break;
+        case 'm':
+            setPixmap(QPixmap(":/imagenes/barrera.png").scaled(700, 100));
             break;
         default:
             break;
@@ -49,6 +55,19 @@ void obstaculo::actualizador(char tipo, int velocidad, char minijuego)
         switch (minijuego) {
         case 'd':
             setPixmap(QPixmap(":/imagenes/cactus.png").scaled(60, 30));
+            break;
+        default:
+            break;
+        }
+    }
+    break;
+    case 'b':{
+        this->velx = (velocidad/2)+1;
+        this->vely = velocidad;
+        this->cuenta = rand()%100;
+        switch (minijuego) {
+        case 'm':
+            setPixmap(QPixmap(":/imagenes/esquiadord.png").scaled(50, 50));
             break;
         default:
             break;
@@ -87,6 +106,9 @@ bool obstaculo::collider(char minigame)
                 setPos(0, rand()%340);
             }
             break;
+            case 'm':{
+                setPos(rand()%700, rand()%500-500);
+            }
             default:
                 break;
             }
@@ -104,11 +126,43 @@ bool obstaculo::collider(char minigame)
                 setPos(0, rand()%340);
             }
             break;
+            case 'm':{
+                setPos(rand()%700, rand()%500-500);
+            }
+            break;
             default:
                 break;
             }
         }
     }
     return colicion;
+}
+
+void obstaculo::imagen(char minijuego)
+{
+    switch (minijuego) {
+    case 'm':{
+        switch(cuenta){
+            case 100:{
+                velx = velx*-1;
+                setPixmap(QPixmap(":/imagenes/esquiadori.png").scaled(50, 50));
+                cuenta++;
+            }
+            break;
+            case 200:{
+                velx = velx*-1;
+                setPixmap(QPixmap(":/imagenes/esquiadord.png").scaled(50, 50));
+                cuenta = 0;
+            }
+            break;
+            default:{
+                cuenta++;
+            }
+            }
+        }
+        break;
+    default:
+        break;
+    }
 }
 

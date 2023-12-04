@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <string>
-#include "obstaculo.h"
 
 class player: public QObject, public QGraphicsPixmapItem
 {
