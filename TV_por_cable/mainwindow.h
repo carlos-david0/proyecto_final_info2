@@ -27,6 +27,8 @@ public:
     void min_canasta();
     void min_balas();
     void min_cactus();
+    void min_eski();
+    void min_pelotas();
 
 public slots:
     void jugar_clicked();

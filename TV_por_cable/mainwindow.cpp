@@ -13,8 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
     escena->addItem(j1);
     minijuego = 'n';
     puntuacion = 1;
+    ui->label_2->setVisible(false);
     escena->setSceneRect(0, 0, ui->graphicsView->width()-5, ui->graphicsView->height()-5);
     ui->graphicsView->setScene(escena);
+    ui->label->setVisible(false);
     menu(true);
     for (short int i = 0; i < 6; i++){
         coleccionables[i] = new coleccionable;
@@ -82,13 +84,14 @@ void MainWindow::reset()
     puntuacion++;
 }
 
-
 void MainWindow::gameover()
 {
+    imagen->setVisible(false);
     escena->setBackgroundBrush(QColor(251, 151, 80));
     tiempo->stop();
     cambio->stop();
     reset();
+    ui->label_2->setPixmap(QPixmap(":/imagenes/0.png").scaled(30,30));
     puntuacion--;
     ui->gameover->setVisible(true);
     ui->puntuacion->setVisible(false);
@@ -100,18 +103,21 @@ void MainWindow::gameover()
 
 void MainWindow::min_canasta()
 {
-    escena->setBackgroundBrush(QColor(46, 135, 4));
+    escena->setBackgroundBrush(QColor(37, 228, 216));
     // representacion: c
     minijuego = 'c';
     ui->instruccion->setText("¡ATRAPA!");
     ui->instruccion->setVisible(true);
+    imagen->setPos(-250, -100);
+    imagen->setPixmap(QPixmap(":/imagenes/pngwing.com.png").scaled(500,500));
+    imagen->setVisible(true);
     j1->actualizador(minijuego, puntuacion);
     j1->setimage(minijuego);
     j1->setVisible(true);
     j1->setPos(ui->graphicsView->width()/2 - 50, ui->graphicsView->height()-100);
     for (short int i = 0; i < 6; i++){
-        coleccionables[i]->actualizador('d', puntuacion/2+1, minijuego);
-        coleccionables[i]->setPos(rand()%241+320, rand()%1000-1000);
+        coleccionables[i]->actualizador('b', puntuacion/2+1, minijuego);
+        coleccionables[i]->setPos(rand()%241+163, rand()%1000-1000);
         escena->addItem(coleccionables[i]);
     }
     obstaculos[0]->actualizador('e', 0, minijuego);
@@ -127,6 +133,9 @@ void MainWindow::min_balas()
     minijuego = 'b';
     ui->instruccion->setText("¡ESQUIVA!");
     ui->instruccion->setVisible(true);
+    imagen->setPos(250, 150);
+    imagen->setPixmap(QPixmap(":/imagenes/nube.png").scaled(300,200));
+    imagen->setVisible(true);
     j1->actualizador(minijuego, puntuacion/2);
     j1->setVisible(true);
     j1->setPixmap(QPixmap(":/imagenes/bird1.png").scaled(100, 50));
@@ -141,7 +150,6 @@ void MainWindow::min_balas()
         obstaculos[i]->setVisible(true);
         escena->addItem(obstaculos[i]);
     }
-
 }
 
 void MainWindow::min_cactus()
@@ -150,7 +158,8 @@ void MainWindow::min_cactus()
     //representacion: d
     minijuego = 'd';
     ui->instruccion->setText("¡CORRE!");
-        ui->instruccion->setVisible(true);
+    ui->instruccion->setVisible(true);
+    imagen->setVisible(false);
     j1->actualizador(minijuego, puntuacion/2);
     j1->setVisible(true);
     j1->setPixmap(QPixmap(":/imagenes/Robot1.png").scaled(50, 60));
@@ -167,13 +176,65 @@ void MainWindow::min_cactus()
     }
 }
 
+void MainWindow::min_eski()
+{
+    escena->setBackgroundBrush(QColor(255, 255, 255));
+    // representacion: m
+    minijuego = 'm';
+    ui->instruccion->setText("¡SOBREVIVE!");
+    ui->instruccion->setVisible(true);
+    imagen->setVisible(false);
+    j1->actualizador(minijuego, puntuacion);
+    j1->setimage(minijuego);
+    j1->setVisible(true);
+    j1->setPos(ui->graphicsView->width()/2 - 50, ui->graphicsView->height()-100);
+    for (short int i = 1; i < 6; i++){
+        obstaculos[i]->actualizador('b', puntuacion/2+1, minijuego);
+        obstaculos[i]->setPos(rand()%600, rand()%500-500);
+        obstaculos[i]->setVisible(true);
+        escena->addItem(obstaculos[i]);
+    }
+    obstaculos[0]->actualizador('e', 0, minijuego);
+    obstaculos[0]->setPos(-1, 400);
+    obstaculos[0]->setVisible(true);
+    escena->addItem(obstaculos[0]);
+}
+
+void MainWindow::min_pelotas(){
+    escena->setBackgroundBrush(QColor(223, 181, 86));
+    //representacion: p
+    minijuego = 'p';
+    ui->instruccion->setText("¡ANOTA!");
+    ui->instruccion->setVisible(true);
+    imagen->setPos(-323, 0);
+    imagen->setPixmap(QPixmap(":/imagenes/cancha.png").scaled(ui->graphicsView->width()*2,ui->graphicsView->height()*2));
+    imagen->setVisible(true);
+    j1->actualizador(minijuego, puntuacion/2);
+    j1->setVisible(true);
+    j1->setPixmap(QPixmap(":/imagenes/aro.png").scaled(100, 100));
+    j1->setPos((ui->graphicsView->width()/2)-52,ui->graphicsView->height()/2-50);
+    obstaculos[0]->actualizador('e', 0, minijuego);
+    obstaculos[0]->setPos(671,-1);
+    obstaculos[0]->setVisible(true);
+    escena->addItem(obstaculos[0]);
+    for (short int i = 1; i < 6; i++){
+        coleccionables[i]->actualizador('d', puntuacion/2+1, minijuego);
+        coleccionables[i]->setPos(rand()%500-500, rand()%335+1);
+        coleccionables[i]->setVisible(true);
+        escena->addItem(coleccionables[i]);
+    }
+}
+
 void MainWindow::jugar_clicked()
 {
     menu(false);
-    j1->reset_vidas();    tiempo->start(10);
+    j1->reset_vidas();
+    tiempo->start(10);
     cambio->start(10000);
     puntuacion = 1;
-    //min_cactus();
+    ui->label->setText("Bienvenido a tu nuevo trabajo,\neres el encargado de elegir la\nprogramacion de un canal de TV.\n\nManten interesada a la audiencia\ntodo el tiempo que puedas ganando\nminijuegos.\n(WASD para moverte)");
+    ui->label->setVisible(true);
+    ui->label_2->setVisible(true);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -199,15 +260,30 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::step()
 {
-
+    switch (j1->getvidas()) {
+    default:
+        ui->label_2->setPixmap(QPixmap(":/imagenes/0.png").scaled(30,30));
+        break;
+    case 1:
+        ui->label_2->setPixmap(QPixmap(":/imagenes/Low.png").scaled(30,30));
+        break;
+    case 2:
+        ui->label_2->setPixmap(QPixmap(":/imagenes/half.png").scaled(30,30));
+        break;
+    case 3:
+        ui->label_2->setPixmap(QPixmap(":/imagenes/full.png").scaled(30,30));
+        break;
+    }
     for (short int i = 0; i < 6; ++i) {
         coleccionables[i] ->setPos(coleccionables[i]->x()+coleccionables[i]->get_velx(), coleccionables[i]->y()+coleccionables[i]->get_vely());
+        coleccionables[i]->controller(minijuego);
         if(coleccionables[i]->collider(minijuego)){
             j1->setvidas();
         }
     }
     for (short int i = 1; i < 6; ++i) {
-        obstaculos[i] ->setPos(obstaculos[i]->x()+obstaculos[i]->get_velx(), obstaculos[i]->y()+obstaculos[i]->get_vely());
+        obstaculos[i]->setPos(obstaculos[i]->x()+obstaculos[i]->get_velx(), obstaculos[i]->y()+obstaculos[i]->get_vely());
+        obstaculos[i]->imagen(minijuego);
         if(obstaculos[i]->collider(minijuego)){
             j1->setvidas();
         }
@@ -222,8 +298,9 @@ void MainWindow::step()
 
 void MainWindow::cambiomin()
 {
+    ui->label->setVisible(false);
     reset();
-    switch (rand() % 3+1) {
+    switch (rand() % 6+1) {
     case 1:
         min_canasta();
         break;
@@ -231,6 +308,15 @@ void MainWindow::cambiomin()
         min_balas();
         break;
     case 3:
+        min_cactus();
+        break;
+    case 4:
+        min_eski();
+        break;
+    case 5:
+        min_pelotas();
+        break;
+    default:
         min_cactus();
         break;
     }

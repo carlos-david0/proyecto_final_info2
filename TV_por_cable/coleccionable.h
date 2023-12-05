@@ -14,10 +14,12 @@ public:
     short int get_velx();
     short int get_vely();
     bool collider(char minigame);
+    void controller(char minigame);
 
 private:
     short int velx;
-    short int vely;
+    float vely;
+    short int transition;
 };
 
 #endif // COLECCIONABLE_H

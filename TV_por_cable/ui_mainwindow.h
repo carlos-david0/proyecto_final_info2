@@ -30,6 +30,8 @@ public:
     QLabel *gameover;
     QLCDNumber *puntuaciongo;
     QLabel *instruccion;
+    QLabel *label;
+    QLabel *label_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -73,6 +75,17 @@ public:
         font2.setItalic(true);
         instruccion->setFont(font2);
         instruccion->setAlignment(Qt::AlignCenter);
+        label = new QLabel(centralwidget);
+        label->setObjectName("label");
+        label->setGeometry(QRect(200, 60, 291, 271));
+        QFont font3;
+        font3.setPointSize(12);
+        font3.setBold(true);
+        label->setFont(font3);
+        label->setAlignment(Qt::AlignCenter);
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(20, 20, 31, 31));
         MainWindow->setCentralWidget(centralwidget);
 
         retranslateUi(MainWindow);
@@ -86,6 +99,8 @@ public:
         jugar->setText(QCoreApplication::translate("MainWindow", "Jugar", nullptr));
         gameover->setText(QCoreApplication::translate("MainWindow", "Game over", nullptr));
         instruccion->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };
